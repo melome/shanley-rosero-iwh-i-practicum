@@ -10,27 +10,24 @@ app.use(express.json());
 // * Please DO NOT INCLUDE the private app access token in your repo. Don't do this practicum in your normal account.
 const PRIVATE_APP_ACCESS = `${process.env.PRIVATE_APP_ACCESS}`;
 
+console.log("PP", PRIVATE_APP_ACCESS);
+
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 app.get('/', async (req, res) => {
-    if (isAuthorized(req.sessionID)) {
-        //const accessToken = tokenStore[req.sessionID];
-        const headers = {
-            Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-            'Content-Type': 'application/json'
-        };
-        const addresses = `https://api.hubapi.com/crm/v3/objects/addresses?properties=name,street_address,city,state,postal_code,country`;
-        try {
-            const resp = await axios.get(addresses, { headers });
-            const data = resp.data;
-            res.render('home', {
-                token: PRIVATE_APP_ACCESS,
-                contacts: data.results
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    } else {
-        res.render('home', { authUrl });
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+    const addresses = `https://api.hubapi.com/crm/v3/objects/addresses?properties=name,street_address,city,state,postal_code,country`;
+    try {
+        const resp = await axios.get(addresses, { headers });
+        const data = resp.data;
+        res.render('homepage', {
+            title: 'Home | Integrating With HubSpot I Practicum',
+            addresses: data.results
+        });
+    } catch (error) {
+        console.error(error);
     }
 });
 
@@ -45,7 +42,7 @@ app.get('/update-cobj', async (req, res) => {
     try {
         const resp = await axios.get(addresses, { headers });
         const data = resp.data.results;
-        res.render('updates', { title: 'Addresses | HubSpot APIs', data });      
+        res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum', data });      
     } catch (error) {
         console.error(error);
     }
@@ -73,7 +70,7 @@ app.post('/update-cobj', async (req, res) => {
 
     try { 
         await axios.patch(updateAddress, update, { headers } );
-        res.redirect('back');
+        res.redirect('/');
     } catch(err) {
         console.error(err);
     }
