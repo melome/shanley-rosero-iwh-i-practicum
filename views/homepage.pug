@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        div(class="container")
+            div(class="wrap")
+                h1 Addresses
+                a(href="/update-cobj", class="add-link") Add to this table
+            div(class="table-container")
+                table
+                    tr
+                        th Name
+                        th Street Address
+                        th City
+                        th State
+                        th Postal Code
+                        th Country
+                    each address in addresses
+                        tr
+                            td= `${address.properties.name}`
+                            td= `${address.properties.street_address}`
+                            td= `${address.properties.city}`
+                            td= `${address.properties.state}`
+                            td= `${address.properties.postal_code}`
+                            td= `${address.properties.country}`
