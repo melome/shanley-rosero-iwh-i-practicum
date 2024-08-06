@@ -20,9 +20,9 @@ html
                         th Country
                     each address in addresses
                         tr
-                            td= `${address.properties.name}`
-                            td= `${address.properties.street_address}`
-                            td= `${address.properties.city}`
-                            td= `${address.properties.state}`
-                            td= `${address.properties.postal_code}`
-                            td= `${address.properties.country}`
+                            td= address.properties.name || ''
+                            td= address.properties.street_address || ''
+                            td= address.properties.city || ''
+                            td= address.properties.state || ''
+                            td= address.properties.postal_code || ''
+                            td= address.properties.country || ''
