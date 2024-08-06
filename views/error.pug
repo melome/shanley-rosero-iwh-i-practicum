@@ -1,0 +1,24 @@
+//Error template
+
+doctype html
+html
+    head
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        .container(style="min-height:0px")
+            h1= `Something went wrong 😥`
+            .error-details
+                p= `message: ${error.message}`
+                p= `code: ${error.code}`
+                br
+                strong= `Tip🔍: Check if "Name" already exists. Try again.`
+            .wrap                
+                a(href="/", class="add-link") Return to the homepage
+                a(onclick="history.back()", class="add-link") Go Back
+
+            
+                
+
+        

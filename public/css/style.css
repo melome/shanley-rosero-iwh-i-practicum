@@ -60,6 +60,7 @@ h1 {
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
+    cursor:pointer;
 }
 
 .home-link {
@@ -70,6 +71,7 @@ h1 {
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
+    cursor:pointer;
 }
 
 .table-container {
@@ -130,6 +132,7 @@ label {
 }
 
 input[type="text"], select {
+    font-family: inherit;
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #33475B;
@@ -138,6 +141,7 @@ input[type="text"], select {
 }
 
 input[type="submit"] {
+    font-family: inherit;
     background-color: #FF7A59;
     border: none;
     color: white;
@@ -153,6 +157,21 @@ input[type="submit"]:hover {
 }
 
 input[readonly], input[disabled] {
+    font-family: inherit;
     background-color: #f0f0f0;
     cursor: not-allowed;
+}
+
+/* Error Styles */
+.error-details {
+    background-color: white;
+    border: 1px solid #33475B;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    width: -webkit-fill-available;
+}
+
+.error-details p {
+    margin: 0;
 }
