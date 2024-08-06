@@ -18,14 +18,14 @@ html(lang="en")
                                 input(type="text" id="name" name="name" required)
                             .form-group
                                 label(for="street_address") Street Address
-                                input(type="text" id="street_address" name="street_address" required)
+                                input(type="text" id="street_address" name="street_address")
                         .form-group-container
                             .form-group
                                 label(for="city") City
-                                input(type="text" id="city" name="city" required)
+                                input(type="text" id="city" name="city")
                             .form-group
                                 label(for="state") State
-                                select(id="state" name="state" required)
+                                select(id="state" name="state")
                                     option(value="") Select a state
                                     option(value="Alabama") Alabama
                                     option(value="Alaska") Alaska
@@ -80,9 +80,9 @@ html(lang="en")
                         .form-group-container
                             .form-group
                                 label(for="postal_code") Postal Code
-                                input(type="text" id="postal_code" name="postal_code" required)
+                                input(type="text" id="postal_code" name="postal_code")
                             .form-group
                                 label(for="country") Country
-                                input(type="text" id="country" name="country" value="United States" readonly disabled)
+                                input(type="text" id="country" name="country" value="United States" disabled)
                         .form-group
                             input(type="submit" value="Submit")
