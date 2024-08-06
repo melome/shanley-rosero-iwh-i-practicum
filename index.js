@@ -28,6 +28,10 @@ app.get('/', async (req, res) => {
         });
     } catch (error) {
         console.error(error);
+        res.render('error', { 
+            title: 'Integrating With HubSpot I Practicum', 
+            error: err
+        });
     }
 });
 
@@ -45,34 +49,43 @@ app.get('/update-cobj', async (req, res) => {
         res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum', data });      
     } catch (error) {
         console.error(error);
+        res.render('error', { 
+            title: 'Integrating With HubSpot I Practicum', 
+            error: err
+        });
     }
 });
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 app.post('/update-cobj', async (req, res) => {
-    const update = {
+    const create = {
         properties: {
-            "name": req.body.name,
-            "street_address": req.body.street_address,
-            "city": req.body.city,
-            "state": req.body.state,
-            "postal_code": req.body.postal_code,
-            "country": req.body.country
+            name: req.body.name,
+            street_address: req.body.street_address,
+            city: req.body.city,
+            state: req.body.state,
+            postal_code: req.body.postal_code,
+            country: "United States"
         }
-    }
+    };
 
-    const name = req.query.name;
-    const updateAddress = `https://api.hubapi.com/crm/v3/objects/contacts/${name}?idProperty=name`;
+    console.log("data", JSON.stringify(create, null, 2));
+
+    const addAddress = 'https://api.hubapi.com/crm/v3/objects/addresses';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
     };
 
-    try { 
-        await axios.patch(updateAddress, update, { headers } );
+    try {
+        await axios.post(addAddress, create, { headers });
         res.redirect('/');
-    } catch(err) {
+    } catch (err) {
         console.error(err);
+        res.render('error', { 
+            title: 'Integrating With HubSpot I Practicum', 
+            error: err
+        });
     }
 
 });
