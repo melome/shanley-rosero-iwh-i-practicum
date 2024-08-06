@@ -1,0 +1,17 @@
+doctype html
+html 
+    head 
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body    
+        h1 Addresses
+        .cards 
+            each address in data
+                .card 
+                    h2.card__name #{address.properties.name}
+                    p.street_address #{address.properties.street_address}
+                    p.city #{address.properties.city}
+                    p.state #{address.properties.state}
+                    p.postal_code #{address.properties.postal_code}
+                    p.country #{address.properties.country}
